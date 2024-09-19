@@ -1,0 +1,591 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earth Leakage Dashboard</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>\
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color:white;
+    color: white;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 20%;
+    background-color: #4c008c;
+    padding: 20px;
+}
+
+.brand {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.menu {
+    list-style: none;
+}
+
+.menu li {
+    padding: 15px 0;
+    color: #a09fe6;
+    cursor: pointer;
+}
+
+.menu li:hover {
+    color: white;
+}
+
+.menu li i {
+    margin-right: 10px;
+}
+
+/* Main Content Styles */
+.main-content {
+    width: 80%;
+    padding: 20px;
+}
+
+.main-content h2 {
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.data-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #6d4fac;
+    padding: 15px;
+    border-radius: 10px;
+    width: 45%;
+}
+
+.card-header {
+    background-color: #2f004f;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.table {
+    margin-top: 10px;
+}
+
+.graphs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.zone-info {
+    margin-top: 20px;
+}
+
+.zone-info iframe {
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 10px;
+}
+.card-header1 {
+    background-color: #2f004f;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-right: 200px;
+}
+td{
+    padding: 10px;
+}
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #2b006e;
+    color: white;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: #6d4fac;
+    padding: 20px;
+}
+
+.brand {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.menu {
+    list-style: none;
+}
+
+.menu li {
+    padding: 15px 0;
+    color: #a09fe6;
+    cursor: pointer;
+}
+
+.menu li:hover {
+    color: white;
+}
+
+.menu li i {
+    margin-right: 10px;
+}
+.main-content {
+    width: 80%;
+    padding: 20px;
+}
+
+.main-content h2 {
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.data-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #6d4fac;
+    padding: 15px;
+    border-radius: 10px;
+    width: 45%;
+}
+
+.card-header {
+    background-color: #2f004f;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+.card-header1 {
+    background-color: #2f004f;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-right: 100px;
+}
+.table {
+    margin-top: 10px;
+}
+
+.graphs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.zone-info {
+    margin-top: 20px;
+}
+
+.zone-info iframe {
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 10px;
+}
+td{
+    padding:10px;
+} */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1 class="brand"><i class="fas fa-bolt"></i> Inovolt</h1>
+            <ul class="menu">
+                <li><i class="fas fa-tachometer-alt"></i><a href="#dashboard" style="color:white; text-decoration: none;"> Dashboard</a></li>
+                <li><i class="fas fa-chart-line"></i><a href="code.html" style="color:white; text-decoration: none;"> Live Data</a></li>
+                <li><i class="fas fa-chart-pie"></i><a href="#analysis" style="color:white; text-decoration: none;"> Analysis</a></li>
+                <li><i class="fas fa-map-marked-alt"></i><a href="#map" style="color:white; text-decoration: none;">  Map</a></li>
+                <li><a href="index.html"  style="color:white; text-decoration: none;">Logout</a></li> 
+                <li><i class="fas fa-tachometer-alt"></i><a href="#dashboard" style="color:white; text-decoration: none;"> Dashboard</a></li>
+                <li><i class="fas fa-broadcast-tower"></i><a href="code.html" style="color:white; text-decoration: none;"> Live Data</a></li>
+                <li><i class="fas fa-chart-bar"></i><a href="#analysis" style="color:white; text-decoration: none;"> Analysis</a></li>
+                <li><i class="fas fa-map"></i><a href="map.html" style="color:white; text-decoration: none;">  Map</a></li>
+                <li><a href="index.html"  style="color:white; text-decoration: none;"> Logout</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h2><i class="fas fa-exclamation-triangle"></i> Earth Leakage</h2>
+            <div class="data-section">
+                <div class="card">
+                    <div class="card-header"><i class="fas fa-bolt"></i> Current (in mA)</div>
+                    <div class="card-body">
+                        <table>
+                            <tr><td>Pole</td><td>mA</td><td>Time</td></tr>
+                            <tr><td>1</td><td>5</td><td>16:30</td></tr>
+                            <tr><td>2</td><td>4</td><td>16:30</td></tr>
+                            <tr><td>3</td><td>1</td><td>16:30</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div >
+                    <div class="card-header1"><a href="page2.html" style="color:white; text-decoration: none;">Resistance (in ohms)</a></div>
+                </div>
+            </div>
+            <div class="graphs">
+                <div class="instant-leakage-graph">
+                    <h3>Instantaneous Leakage Current</h3>
+                    <canvas id="lineChart"></canvas>
+                </div>
+                <div class="peak-leakage-graph">
+                    <h3>Peak Leakage Current (in amps)</h3>
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="zone-info">
+                <p>Coimbatore, Tamil Nadu, India</p>
+                <p>V2HC+GHR, Coimbatore, Tamil Nadu 641032, India</p>
+                <p>Lat: 10.8738397, Long: 77.0227121</p>
+                <br>
+                <br>
+                <div id="map" style="height: 300px; border-radius: 10px;"></div>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+    <script>
+        var map = L.map('map').setView([10.8738397, 77.0227121], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        L.marker([10.8738397, 77.0227121]).addTo(map)
+            .bindPopup('Coimbatore, Tamil Nadu, India')
+            .openPopup();
+        const ctxLine = document.getElementById('lineChart').getContext('2d');
+        const lineChart = new Chart(ctxLine, {
+            type: 'line',
+            data: {
+                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'],
+                datasets: [{
+                    label: 'Instantaneous Leakage Current (mA)',
+                    data: [10, 12, 8, 15, 10, 18, 14, 22, 20, 25, 18, 22, 20],
+                    borderColor: '#4f87ac',
+                    fill: false,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+        const ctxBar = document.getElementById('barChart').getContext('2d');
+        const barChart = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'],
+                datasets: [{
+                    label: 'Peak Leakage Current (Amps)',
+                    data: [15, 20, 10, 25, 18, 30, 22, 28, 25, 30, 22, 28, 25],
+                    backgroundColor: '#4f87ac'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earth Leakage Dashboard</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: white;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 20%;
+            background-color: #4c008c;
+            padding: 20px;
+        }
+
+        .brand {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            list-style: none;
+        }
+
+        .menu li {
+            padding: 15px 0;
+            color: #a09fe6;
+            cursor: pointer;
+        }
+
+        .menu li:hover {
+            color: white;
+        }
+
+        .menu li i {
+            margin-right: 10px;
+        }
+
+        .main-content {
+            width: 80%;
+            padding: 20px;
+        }
+
+        .main-content h2 {
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .data-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: #6d4fac;
+            padding: 15px;
+            border-radius: 10px;
+            width: 45%;
+        }
+
+        .card-header {
+            background-color: #2f004f;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .card-header1 {
+            background-color: #2f004f;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-right: 200px;
+        }
+
+        .table {
+            margin-top: 10px;
+        }
+
+        .graphs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        .zone-info {
+            margin-top: 20px;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        .zone-info a {
+            color: #4a56ff;
+            text-decoration: underline;
+        }
+
+        .zone-info a:hover {
+            color: #3a46d5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1 class="brand"><i class="fas fa-bolt"></i> Inovolt</h1>
+            <ul class="menu">
+                <li><i class="fas fa-tachometer-alt"></i><a href="#dashboard" style="color:white; text-decoration: none;"> Dashboard</a></li>
+                <li><i class="fas fa-broadcast-tower"></i><a href="code.html" style="color:white; text-decoration: none;"> Live Data</a></li>
+                <li><i class="fas fa-chart-bar"></i><a href="#analysis" style="color:white; text-decoration: none;"> Analysis</a></li>
+                <li><i class="fas fa-map"></i><a href="map.html" style="color:white; text-decoration: none;"> Map</a></li>
+                <li><a href="indexx.html"  style="color:white; text-decoration: none;"> Logout</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h2><i class="fas fa-exclamation-triangle"></i> Earth Leakage</h2>
+            <div class="data-section">
+                <div class="card">
+                    <div class="card-header"><i class="fas fa-bolt"></i> Current (in mA)</div>
+                    <div class="card-body">
+                        <table>
+                            <tr><td>Pole</td><td>mA</td><td>Time</td></tr>
+                            <tr><td>1</td><td>5</td><td>16:30</td></tr>
+                            <tr><td>2</td><td>4</td><td>16:30</td></tr>
+                            <tr><td>3</td><td>1</td><td>16:30</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card-header1"><a href="page2.html" style="color:white; text-decoration: none;">Resistance (in ohms)</a></div>
+                </div>
+            </div>
+            <div class="graphs">
+                <div class="instant-leakage-graph">
+                    <h3>Instantaneous Leakage Current</h3>
+                    <canvas id="lineChart"></canvas>
+                </div>
+                <div class="peak-leakage-graph">
+                    <h3>Peak Leakage Current (in amps)</h3>
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+            <div class="zone-info">
+                <p>Coimbatore, Tamil Nadu, India</p>
+                <p>Lat: 10.8738397, Long: 77.0227121</p>
+                <a href="map.html">View Map</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        const ctxLine = document.getElementById('lineChart').getContext('2d');
+        const lineChart = new Chart(ctxLine, {
+            type: 'line',
+            data: {
+                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'],
+                datasets: [{
+                    label: 'Instantaneous Leakage Current (mA)',
+                    data: [10, 12, 8, 15, 10, 18, 14, 22, 20, 25, 18, 22, 20],
+                    borderColor: '#4f87ac',
+                    fill: false,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+
+        const ctxBar = document.getElementById('barChart').getContext('2d');
+        const barChart = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'],
+                datasets: [{
+                    label: 'Peak Leakage Current (Amps)',
+                    data: [15, 20, 10, 25, 18, 30, 22, 28, 25, 30, 22, 28, 25],
+                    backgroundColor: '#4f87ac'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,639 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color:white;
+            color: white;
+        }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #4c008c;
+            color:white;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+        .sidebar a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        .sidebar a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+
+        .content {
+            margin-left: 200px;
+            padding: 20px;
+            margin-top: 60px;
+            flex: 1;
+        }
+
+        .pole-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .pole-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .pole {
+            width: 50px;
+            height: 300px;
+            background-color: #3498db;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .indicator {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 10px;
+            background-color: #e74c3c;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .range-slider {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .range-slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .lamp {
+            width: 30px;
+            height: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        input[type="text"], input[type="password"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .sidebar a {
+                float: left;
+                width: 100%;
+                text-align: center;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .pole-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            button {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .pole-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .pole {
+                height: 200px;
+                width: 40px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .pole-container {
+                flex-direction: row;
+                gap: 20px;
+                justify-content: center;
+            }
+        }
+    </style>
+    <title>SIH</title>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="code.html">Home</a>
+        <a href="page.html">Dashboard</a>
+        <a href="#about">About</a>
+        <a href="index.html">Logout</a>
+    </div>
+    <center><h1>Live Analysis</h1></center>
+    <div class="content">
+        <div id="Dashboard">
+            <div class="pole-container">
+                <div class="pole-wrapper">
+                    <div class="pole" id="pole1">
+                        <div class="indicator" id="indicator1"></div>
+                    </div>
+                    <div class="range-slider-container">
+                        <input type="range" class="range-slider" min="0" max="100" value="50" id="range1">
+                        <img src="lamp.jpeg" alt="Lamp" class="lamp"> 
+                    </div>
+                    <p>Pole 1</p>
+                </div>
+                <div class="pole-wrapper">
+                    <div class="pole" id="pole2">
+                        <div class="indicator" id="indicator2"></div>
+                    </div>
+                    <div class="range-slider-container">
+                        <input type="range" class="range-slider" min="0" max="100" value="50" id="range2">
+                        <img src="lamp.jpeg" alt="Lamp" class="lamp"> 
+                    </div>
+                    <p>Pole 2</p>
+                </div>
+                <div class="pole-wrapper">
+                    <div class="pole" id="pole3">
+                        <div class="indicator" id="indicator3"></div>
+                    </div>
+                    <div class="range-slider-container">
+                        <input type="range" class="range-slider" min="0" max="100" value="50" id="range3">
+                        <img src="lamp.jpeg" alt="Lamp" class="lamp"> 
+                    </div>
+                    <p>Pole 3</p>
+                </div>
+                <div class="pole-wrapper">
+                    <div class="pole" id="pole4">
+                        <div class="indicator" id="indicator4"></div>
+                    </div>
+                    <div class="range-slider-container">
+                        <input type="range" class="range-slider" min="0" max="100" value="50" id="range4">
+                        <img src="lamp.jpeg" alt="Lamp" class="lamp"> 
+                    </div>
+                    <p>Pole 4</p>
+                </div>
+                <div class="pole-wrapper">
+                    <div class="pole" id="pole5">
+                        <div class="indicator" id="indicator5"></div>
+                    </div>
+                    <div class="range-slider-container">
+                        <input type="range" class="range-slider" min="0" max="100" value="50" id="range5">
+                        <img src="lamp.jpeg" alt="Lamp" class="lamp"> 
+                    </div>
+                    <p>Pole 5</p>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div>
+                <h2>Graph</h2>
+                <canvas id="myChart" width="400" height="200"></canvas>
+            </div>
+            <br>
+            <br>
+            <div id="about">
+                <center><h1>ABOUT</h1></center>
+                <p style="font-size:20px">This website displays the virtual representation of the change in leakage current and the ground resistance in a pole.This helps the staffs from maintenance team to perform real-time monitoring and take necessary action in case of malfunction.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Pole 1', 'Pole 2', 'Pole 3', 'Pole 4', 'Pole 5'],
+                datasets: [{
+                    label: 'Pole Height',
+                    data: [50, 50, 50, 50, 50], 
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100 // Adjust based on your slider max value
+                    }
+                }
+            }
+        });
+
+        function updateIndicator(id, value) {
+            const pole = document.getElementById(id);
+            const indicator = pole.querySelector('.indicator');
+            const height = (value / 100) * pole.clientHeight;
+            indicator.style.height = `${height}px`;
+            
+            // Update chart data
+            const poleIndex = id.replace('pole', '') - 1; // Convert pole ID to index
+            myChart.data.datasets[0].data[poleIndex] = value; // Update chart data
+            myChart.update(); // Refresh chart
+        }
+
+        function setupRange(id) {
+            const rangeInput = document.getElementById(id);
+            rangeInput.addEventListener('input', (event) => {
+                updateIndicator(`pole${id.replace('range', '')}`, event.target.value);
+            });
+            updateIndicator(`pole${id.replace('range', '')}`, rangeInput.value);
+        }
+
+        setupRange('range1');
+        setupRange('range2');
+        setupRange('range3');
+        setupRange('range4');
+        setupRange('range5');
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: white;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #4c008c;
+            color: white;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white; /* Text color set to white */
+            padding: 16px;
+            text-decoration: none;
+        }
+
+        .sidebar a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        .sidebar a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+
+        .content {
+            margin-left: 200px;
+            padding: 20px;
+            margin-top: 60px;
+            flex: 1;
+        }
+
+        .pole-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .pole-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .pole {
+            width: 50px;
+            height: 300px;
+            background-color: #3498db;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .indicator {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 10px;
+            background-color: #e74c3c;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .range-slider {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .range-slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .lamp {
+            width: 30px;
+            height: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        input[type="text"], input[type="password"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .sidebar a {
+                float: left;
+                width: 100%;
+                text-align: center;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .pole-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            button {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .pole-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .pole {
+                height: 200px;
+                width: 40px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .pole-container {
+                flex-direction: row;
+                gap: 20px;
+                justify-content: center;
+            }
+        }
+    </style>
+    <title>SIH</title>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="code.html">Home</a>
+        <a href="page.html">Dashboard</a>
+        <a href="#about">About</a>
+        <a href="index.html">Logout</a>
+    </div>
+    <center><h1 style="color: #4c008c;">Live Analysis</h1></center>
+    <div class="content">
+        <div id="Dashboard">
+            <div class="pole-container">
+                <div class="pole-wrapper">
+                    <div class="pole" id="pole1">
+                        <div class="indicator" id="indicator1"></div>
+                    </div>
+                    <div class="range-slider-container">
+                        <input type="range" class="range-slider" min="0" max="100" value="50" id="range1">
+                        <img src="lamp.jpeg" alt="Lamp" class="lamp"> <!-- Adjust path as needed -->
+                    </div>
+                    <p>Pole 1</p>
+                </div>
+                <div class="pole-wrapper">
+                    <div class="pole" id="pole2">
+                        <div class="indicator" id="indicator2"></div>
+                    </div>
+                    <div class="range-slider-container">
+                        <input type="range" class="range-slider" min="0" max="100" value="50" id="range2">
+                        <img src="lamp.jpeg" alt="Lamp" class="lamp"> <!-- Adjust path as needed -->
+                    </div>
+                    <p>Pole 2</p>
+                </div>
+                <div class="pole-wrapper">
+                    <div class="pole" id="pole3">
+                        <div class="indicator" id="indicator3"></div>
+                    </div>
+                    <div class="range-slider-container">
+                        <input type="range" class="range-slider" min="0" max="100" value="50" id="range3">
+                        <img src="lamp.jpeg" alt="Lamp" class="lamp"> <!-- Adjust path as needed -->
+                    </div>
+                    <p>Pole 3</p>
+                </div>
+                <div class="pole-wrapper">
+                    <div class="pole" id="pole4">
+                        <div class="indicator" id="indicator4"></div>
+                    </div>
+                    <div class="range-slider-container">
+                        <input type="range" class="range-slider" min="0" max="100" value="50" id="range4">
+                        <img src="lamp.jpeg" alt="Lamp" class="lamp"> <!-- Adjust path as needed -->
+                    </div>
+                    <p>Pole 4</p>
+                </div>
+                <div class="pole-wrapper">
+                    <div class="pole" id="pole5">
+                        <div class="indicator" id="indicator5"></div>
+                    </div>
+                    <div class="range-slider-container">
+                        <input type="range" class="range-slider" min="0" max="100" value="50" id="range5">
+                        <img src="lamp.jpeg" alt="Lamp" class="lamp"> <!-- Adjust path as needed -->
+                    </div>
+                    <p>Pole 5</p>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div>
+                <h2>Graph</h2>
+                <canvas id="myChart" width="400" height="200"></canvas>
+            </div>
+            <br>
+            <br>
+            <div id="about">
+                <center><h1 style="color: #4c008c;">ABOUT</h1></center>
+                <p style="font-size:20px; color: black;">&nbsp;&nbsp;&nbsp;&nbsp;This website displays the virtual representation of the change in leakage current and the ground resistance in a pole. This helps the staff from the maintenance team to perform real-time monitoring and take necessary action in case of malfunction.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Pole 1', 'Pole 2', 'Pole 3', 'Pole 4', 'Pole 5'],
+                datasets: [{
+                    label: 'Pole Height',
+                    data: [50, 50, 50, 50, 50], 
+                    backgroundColor: 'rgba(148, 0, 211, 0.2)', // Dark violet color
+                    borderColor: 'rgba(148, 0, 211, 1)', // Dark violet border color
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100 // Adjust based on your slider max value
+                    }
+                }
+            }
+        });
+
+        function updateIndicator(id, value) {
+            const pole = document.getElementById(id);
+            const indicator = pole.querySelector('.indicator');
+            const height = (value / 100) * pole.clientHeight;
+            indicator.style.height = `${height}px`;
+            
+            // Update chart data
+            const poleIndex = id.replace('pole', '') - 1; // Convert pole ID to index
+            myChart.data.datasets[0].data[poleIndex] = value; // Update chart data
+            myChart.update(); // Refresh chart
+        }
+
+        function setupRange(id) {
+            const rangeInput = document.getElementById(id);
+            rangeInput.addEventListener('input', (event) => {
+                updateIndicator(`pole${id.replace('range', '')}`, event.target.value);
+            });
+            updateIndicator(`pole${id.replace('range', '')}`, rangeInput.value);
+        }
+
+        setupRange('range1');
+        setupRange('range2');
+        setupRange('range3');
+        setupRange('range4');
+        setupRange('range5');
+    </script>
+</body>
+</html>

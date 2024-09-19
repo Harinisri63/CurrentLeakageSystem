@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Solution</title>
+    <style>
+        /* General body and container styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #d2f3fc, #b2e4f8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            width: 80%;
+        }
+
+        /* Logo Styling */
+        .logo {
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px;
+        }
+
+        .logo-img {
+            height: 80px;
+            width: auto;
+        }
+
+        /* Welcome Text Styling */
+        .welcome-text h1 {
+            font-size: 2.5em;
+            color: #2a2a2a;
+            margin: 0;
+        }
+
+        .welcome-text p {
+            font-size: 1.2em;
+            color: #4d4d4d;
+            margin-top: 10px;
+        }
+
+        /* Solution Cards Container */
+        .solution-cards {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+
+        /* Individual Card Styling */
+        .card {
+            width: 30%;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Consistent image sizing */
+        .card-img {
+            width: 100%; /* Make the image take full width */
+            height: 200px; /* Set a fixed height */
+            object-fit: cover; /* Ensure the image fills the area without distortion */
+            border-radius: 10px;
+        }
+
+        .card h3 {
+            margin-top: 10px;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .solution-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-text">
+            <h1>WELCOME TO OUR SOLUTION</h1>
+            <p>No problem is too big... No idea is too small...</p><img src="name.jpeg" width="150px" height="100px">
+        </div>
+
+        <div class="solution-cards">
+            <div class="card">
+                <img src="img1.jpg" alt="Air" class="card-img">
+                <h3>Air</h3>
+            </div>
+            <div class="card">
+                <a href="login.html"><img src="electricity.jpg" alt="Electricity" class="card-img"></a>
+                <h3>Electricity</h3>
+            </div>
+            <div class="card">
+                <img src="water.jpg" alt="Water" class="card-img">
+                <h3>Water</h3>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
